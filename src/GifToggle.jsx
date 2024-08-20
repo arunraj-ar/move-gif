@@ -15,6 +15,7 @@ const GifToggle = ({ gifUrl }) => {
     };
 
     const handleDeviceMotion = (event) => {
+      alert("device moved")
       const acceleration = event.accelerationIncludingGravity;
       const movementThreshold = 2;
 
