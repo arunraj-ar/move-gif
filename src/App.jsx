@@ -11,6 +11,7 @@ function App() {
   }, [isMoving]);
   useEffect(() => {
     const handleDeviceMotion = (e) => {
+      window.alert(">>>handling device motion")
       const acceleration = e.accelerationIncludingGravity;
       const movementThreshold = 2;
 
