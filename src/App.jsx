@@ -7,6 +7,7 @@ function App() {
   const isMovingRef = useRef(isMoving);
 
   useEffect(() => {
+    console.log("isMoving: ",isMoving)
     isMovingRef.current = isMoving;
   }, [isMoving]);
   useEffect(() => {
@@ -15,39 +16,42 @@ function App() {
       const acceleration = e.accelerationIncludingGravity;
       const movementThreshold = 2;
 
+      let timeoutId;
       if (
         !isMovingRef.current &&
         (Math.abs(acceleration.x) > movementThreshold ||
           Math.abs(acceleration.y) > movementThreshold ||
           Math.abs(acceleration.z) > movementThreshold)
       ) {
+        clearTimeout(timeoutId)
         setIsMoving(true);
 
-        setTimeout(() => {
-          setIsMoving(true);
-        }, 5000);
+        timeoutId = setTimeout(() => {
+          setIsMoving(false);
+        }, 3860);
       }
     };
 
     if(window.DeviceMotionEvent) {
-      window.addEventListener("devicemotion", handleDeviceMotion);
+      window.addEventListener("devicemotion", handleDeviceMotion, true);
     } else {
       console.log("DeviceMotion API is not supported in this browser.");
     }
 
     return () => {
-      window.removeEventListener("devicemotion", handleDeviceMotion);
+      window.removeEventListener("devicemotion", handleDeviceMotion, true);
     }
   }, []);
 
   return (
     <>
+    <h1>hello</h1>
       <Card
         data={{
           url: "https://europe1.discourse-cdn.com/figma/original/3X/7/1/7105e9c010b3d1f0ea893ed5ca3bd58e6cec090e.gif",
           alt: "Jake The Dog Dancing",
         }}
-        isMoving
+        isMoving={isMoving}
       />
     </>
   );
