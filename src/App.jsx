@@ -7,14 +7,12 @@ function App() {
   const isMovingRef = useRef(isMoving);
 
   useEffect(() => {
-    console.log("isMoving: ",isMoving)
     isMovingRef.current = isMoving;
   }, [isMoving]);
   useEffect(() => {
     const handleDeviceMotion = (e) => {
-      window.alert(">>>handling device motion")
       const acceleration = e.accelerationIncludingGravity;
-      const movementThreshold = 2;
+      const movementThreshold = 5;
 
       let timeoutId;
       if (
