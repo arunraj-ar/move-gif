@@ -26,15 +26,15 @@ function App() {
     let count = 0;
     const handleDeviceMotion = (e) => {
       document.getElementsByTagName('h1')[0].innerHTML = `hello ${count++}`
-      const acceleration = e.accelerationIncludingGravity;
-      const movementThreshold = 5;
+      // const acceleration = e.accelerationIncludingGravity;
+      // const movementThreshold = 5;
 
       let timeoutId;
       if (
-        !isMovingRef.current &&
-        (Math.abs(acceleration.x) > movementThreshold ||
-          Math.abs(acceleration.y) > movementThreshold ||
-          Math.abs(acceleration.z) > movementThreshold)
+        !isMovingRef.current //&&
+        // (Math.abs(acceleration.x) > movementThreshold ||
+        //   Math.abs(acceleration.y) > movementThreshold ||
+        //   Math.abs(acceleration.z) > movementThreshold)
       ) {
         clearTimeout(timeoutId)
         setIsMoving(true);
@@ -48,13 +48,13 @@ function App() {
     const throttledMotion = throttle(handleDeviceMotion, 3860)
 
     if(window.DeviceMotionEvent) {
-      window.addEventListener("devicemotion", throttledMotion);
+      window.addEventListener("click", throttledMotion);
     } else {
       console.log("DeviceMotion API is not supported in this browser.");
     }
 
     return () => {
-      window.removeEventListener("devicemotion", throttledMotion);
+      window.removeEventListener("click", throttledMotion);
     }
   }, []);
 
