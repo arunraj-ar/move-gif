@@ -1,7 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { Card } from "./Card";
-import { throttle } from "./assets/helpers";
+
+const throttle = (func, limit) => {
+  let flag = true;
+  return (e) => {
+    if (flag) {
+      func(e);
+      flag = false;
+      setTimeout(() => {
+        flag = true;
+      }, limit);
+    }
+  };
+};
 
 function App() {
   const [isMoving, setIsMoving] = useState(false);
@@ -13,7 +25,7 @@ function App() {
   useEffect(() => {
     const handleDeviceMotion = (e) => {
       const acceleration = e.accelerationIncludingGravity;
-      const movementThreshold = 5;
+      const movementThreshold = 2;
 
       let timeoutId;
       if (
