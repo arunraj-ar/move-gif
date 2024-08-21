@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     const handleDeviceMotion = (e) => {
       const acceleration = e.accelerationIncludingGravity;
-      const movementThreshold = 2;
+      const movementThreshold = 5;
 
       let timeoutId;
       if (
