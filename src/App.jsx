@@ -2,6 +2,19 @@ import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { Card } from "./Card";
 
+const throttle = (func, limit) => {
+  let flag = true;
+  return () => {
+    if(flag) {
+      func();
+      flag=false;
+      setTimeout(() => {
+        flag = true;
+      }, limit);
+    }
+  }
+}
+
 function App() {
   const [isMoving, setIsMoving] = useState(false);
   const isMovingRef = useRef(isMoving);
@@ -10,7 +23,9 @@ function App() {
     isMovingRef.current = isMoving;
   }, [isMoving]);
   useEffect(() => {
+    let count = 0;
     const handleDeviceMotion = (e) => {
+      document.getElementsByTagName('h1')[0].innerHTML = `hello ${count++}`
       const acceleration = e.accelerationIncludingGravity;
       const movementThreshold = 5;
 
@@ -29,6 +44,8 @@ function App() {
         }, 3860);
       }
     };
+
+    const throttledMotion = throttle(handleDeviceMotion, 3860)
 
     if(window.DeviceMotionEvent) {
       window.addEventListener("devicemotion", handleDeviceMotion, true);
