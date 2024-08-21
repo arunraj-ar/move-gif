@@ -48,13 +48,13 @@ function App() {
     const throttledMotion = throttle(handleDeviceMotion, 3860)
 
     if(window.DeviceMotionEvent) {
-      window.addEventListener("devicemotion", throttledMotion, true);
+      window.addEventListener("devicemotion", throttledMotion);
     } else {
       console.log("DeviceMotion API is not supported in this browser.");
     }
 
     return () => {
-      window.removeEventListener("devicemotion", throttledMotion, true);
+      window.removeEventListener("devicemotion", throttledMotion);
     }
   }, []);
 
