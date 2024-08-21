@@ -23,9 +23,22 @@ function App() {
     isMovingRef.current = isMoving;
   }, [isMoving]);
   useEffect(() => {
+    let count = 0;
     const handleDeviceMotion = (e) => {
+      document.getElementsByTagName(
+        "h1"
+      )[0].innerHTML = `hello Acceleration (X): ${e?.acceleration?.x}<br>
+        Acceleration (Y): ${e?.acceleration?.y}<br>
+        Acceleration (Z): ${e?.acceleration?.z}<br>
+        Acceleration including Gravity (X): ${e?.accelerationIncludingGravity?.x}<br>
+        Acceleration including Gravity (Y): ${e?.accelerationIncludingGravity?.y}<br>
+        Acceleration including Gravity (Z): ${e?.accelerationIncludingGravity?.z}<br>
+        Rotation Rate (Alpha): ${e?.rotationRate?.alpha}<br>
+        Rotation Rate (Beta): ${e?.rotationRate?.beta}<br>
+        Rotation Rate (Gamma): ${e?.rotationRate?.gamma}<br>
+        Interval: ${e?.interval}`;
       const acceleration = e.accelerationIncludingGravity;
-      const movementThreshold = 2;
+      const movementThreshold = 5;
 
       let timeoutId;
       if (
