@@ -25,7 +25,7 @@ function App() {
   useEffect(() => {
     let count = 0;
     const handleDeviceMotion = (e) => {
-      document.getElementsByTagName('h1')[0].innerHTML = `hello ${count++}`
+      document.getElementsByTagName('h1')[0].innerHTML = `hello ${count++}, ${JSON.stringify(e)}`
       // const acceleration = e.accelerationIncludingGravity;
       // const movementThreshold = 5;
 
@@ -48,13 +48,13 @@ function App() {
     const throttledMotion = throttle(handleDeviceMotion, 3860)
 
     if(window.DeviceMotionEvent) {
-      window.addEventListener("click", throttledMotion);
+      window.addEventListener("devicemotion", throttledMotion);
     } else {
       console.log("DeviceMotion API is not supported in this browser.");
     }
 
     return () => {
-      window.removeEventListener("click", throttledMotion);
+      window.removeEventListener("devicemotion", throttledMotion);
     }
   }, []);
 
