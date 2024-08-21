@@ -4,9 +4,9 @@ import { Card } from "./Card";
 
 const throttle = (func, limit) => {
   let flag = true;
-  return () => {
+  return (e) => {
     if(flag) {
-      func();
+      func(e);
       flag=false;
       setTimeout(() => {
         flag = true;
