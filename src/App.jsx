@@ -37,15 +37,15 @@ function App() {
         Rotation Rate (Beta): ${e?.rotationRate?.beta}<br>
         Rotation Rate (Gamma): ${e?.rotationRate?.gamma}<br>
         Interval: ${e?.interval}`;
-      // const acceleration = e.accelerationIncludingGravity;
-      // const movementThreshold = 5;
+      const acceleration = e.accelerationIncludingGravity;
+      const movementThreshold = 5;
 
       let timeoutId;
       if (
-        !isMovingRef.current //&&
-        // (Math.abs(acceleration.x) > movementThreshold ||
-        //   Math.abs(acceleration.y) > movementThreshold ||
-        //   Math.abs(acceleration.z) > movementThreshold)
+        !isMovingRef.current &&
+        (parseInt(acceleration.x) > movementThreshold ||
+          parseInt(acceleration.y) > movementThreshold ||
+          parseInt(acceleration.z) > movementThreshold)
       ) {
         clearTimeout(timeoutId);
         setIsMoving(true);
