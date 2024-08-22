@@ -30,12 +30,15 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    isMovingRef.current = isMoving;
-  }, [isMoving]);
+  // useEffect(() => {
+  //   isMovingRef.current = isMoving;
+  // }, [isMoving]);
 
   useEffect(() => {
     console.log("trying to play gif: ",movement)
+    document.getElementsByTagName(
+      "p"
+    )[0].innerHTML = `${JSON.stringify(movement)}`;
     throttle(handleGifPlay,3860)(movement)
   }, [movement])
   useEffect(() => {
@@ -45,18 +48,18 @@ function App() {
 
 
 
-      document.getElementsByTagName(
-        "p"
-      )[0].innerHTML = `hello Acceleration (X): ${e?.acceleration?.x}<br>
-        Acceleration (Y): ${e?.acceleration?.y}<br>
-        Acceleration (Z): ${e?.acceleration?.z}<br>
-        Acceleration including Gravity (X): ${e?.accelerationIncludingGravity?.x}<br>
-        Acceleration including Gravity (Y): ${e?.accelerationIncludingGravity?.y}<br>
-        Acceleration including Gravity (Z): ${e?.accelerationIncludingGravity?.z}<br>
-        Rotation Rate (Alpha): ${e?.rotationRate?.alpha}<br>
-        Rotation Rate (Beta): ${e?.rotationRate?.beta}<br>
-        Rotation Rate (Gamma): ${e?.rotationRate?.gamma}<br>
-        Interval: ${e?.interval}`;
+      // document.getElementsByTagName(
+      //   "p"
+      // )[0].innerHTML = `hello Acceleration (X): ${e?.acceleration?.x}<br>
+      //   Acceleration (Y): ${e?.acceleration?.y}<br>
+      //   Acceleration (Z): ${e?.acceleration?.z}<br>
+      //   Acceleration including Gravity (X): ${e?.accelerationIncludingGravity?.x}<br>
+      //   Acceleration including Gravity (Y): ${e?.accelerationIncludingGravity?.y}<br>
+      //   Acceleration including Gravity (Z): ${e?.accelerationIncludingGravity?.z}<br>
+      //   Rotation Rate (Alpha): ${e?.rotationRate?.alpha}<br>
+      //   Rotation Rate (Beta): ${e?.rotationRate?.beta}<br>
+      //   Rotation Rate (Gamma): ${e?.rotationRate?.gamma}<br>
+      //   Interval: ${e?.interval}`;
 
 
       let timeoutId;
