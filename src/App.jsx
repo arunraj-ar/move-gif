@@ -23,10 +23,15 @@ function App() {
   const handleGifPlay = (a) => {
     console.log("trying to play gif: ",a)
     const movementThreshold = 2;
-    if(parseInt(a?.x) > movementThreshold ||
+    let intervalId;
+    if (!isMoving&& (parseInt(a?.x) > movementThreshold ||
     parseInt(a?.y) > movementThreshold ||
-    parseInt(a?.z) > movementThreshold) {
+    parseInt(a?.z) > movementThreshold)) {
+      clearTimeout(intervalId);
       setIsMoving(true);
+      intervalId = setTimeout(() => {
+        setIsMoving(false);
+      }, 3860);
     }
   }
 
