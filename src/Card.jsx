@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import "./App.css";
 export const Card = ({ data = {}, isMoving = true, setIsMoving }) => {
   const canvasRef = useRef(null);
@@ -19,22 +19,8 @@ export const Card = ({ data = {}, isMoving = true, setIsMoving }) => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   if (isMoving) {
-  //     const canvas = canvasRef.current;
-  //     const img = imgRef.current;
-  //     console.log("img.clientwidth: ", img.clientWidth, img.clientHeight);
-  //     document.getElementsByTagName(
-  //       "p"
-  //     )[0].innerHTML = `${img.clientWidth} ${img.clientHeight}`;
-
-  //     canvas.width = img.clientWidth;
-  //     canvas.height = img.clientHeight;
-  //   }
-  // }, [isMoving]);
   return (
-    <div className={`border p-10`}>
-      {/* <p></p> */}
+    <div className={`border p-4`}>
       <img
         ref={imgRef}
         src={url}
