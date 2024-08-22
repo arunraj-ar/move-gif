@@ -81,7 +81,9 @@ function App() {
     const throttledMotion = throttle(handleDeviceMotion, 3860);
 
     const updateMovements = (e) => {
-      console.log("updating movements: ",e.acceleration)
+      document.getElementsByTagName(
+        "p"
+      )[0].innerHTML = `${JSON.stringify(e?.acceleration)}`;
       setMovement({...e?.acceleration})
     }
 
