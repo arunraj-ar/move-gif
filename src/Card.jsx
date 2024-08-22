@@ -14,8 +14,8 @@ export const Card = ({ data = {}, isMoving = true, setIsMoving }) => {
       canvas.width = img.width;
       canvas.height = img.height;
       ctx.drawImage(img, 0, 0, img.width, img.height);
+      setIsMoving(false);
     };
-    setIsMoving(false);
   }, []);
 
   useEffect(() => {
