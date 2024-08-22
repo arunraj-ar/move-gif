@@ -24,8 +24,8 @@ function App() {
   }, [isMoving]);
   useEffect(() => {
     const handleDeviceMotion = (e) => {
-      const acceleration = e.accelerationIncludingGravity;
-      const movementThreshold = 2;
+      const acceleration = e.acceleration;
+      const movementThreshold = 10;
 
 
 
