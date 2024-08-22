@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { Card } from "./Card";
 
@@ -18,10 +18,8 @@ const throttle = (func, limit) => {
 function App() {
   const [isMoving, setIsMoving] = useState(false);
   const [movement, setMovement] = useState({});
-  const isMovingRef = useRef(isMoving);
 
   const handleGifPlay = (a) => {
-    console.log("trying to play gif: ",a)
     const movementThreshold = 2;
     let intervalId;
     if (!isMoving&& (parseInt(a?.x) > movementThreshold ||
@@ -35,65 +33,13 @@ function App() {
     }
   }
 
-  // useEffect(() => {
-  //   isMovingRef.current = isMoving;
-  // }, [isMoving]);
-
   useEffect(() => {
-    console.log("trying to play gif: ",movement)
-    document.getElementsByTagName(
-      "p"
-    )[0].innerHTML = `
-    ${movement?.x},
-    ${movement?.y},
-    ${movement?.x},
-    `;
     throttle(handleGifPlay,3860)(movement)
   }, [movement])
   useEffect(() => {
-    // const handleDeviceMotion = (e) => {
-    //   const acceleration = e.acceleration;
-    //   const movementThreshold = 10;
-
-
-
-    //   // document.getElementsByTagName(
-    //   //   "p"
-    //   // )[0].innerHTML = `hello Acceleration (X): ${e?.acceleration?.x}<br>
-    //   //   Acceleration (Y): ${e?.acceleration?.y}<br>
-    //   //   Acceleration (Z): ${e?.acceleration?.z}<br>
-    //   //   Acceleration including Gravity (X): ${e?.accelerationIncludingGravity?.x}<br>
-    //   //   Acceleration including Gravity (Y): ${e?.accelerationIncludingGravity?.y}<br>
-    //   //   Acceleration including Gravity (Z): ${e?.accelerationIncludingGravity?.z}<br>
-    //   //   Rotation Rate (Alpha): ${e?.rotationRate?.alpha}<br>
-    //   //   Rotation Rate (Beta): ${e?.rotationRate?.beta}<br>
-    //   //   Rotation Rate (Gamma): ${e?.rotationRate?.gamma}<br>
-    //   //   Interval: ${e?.interval}`;
-
-
-    //   let timeoutId;
-    //   if (
-    //     !isMovingRef.current &&
-    //     (parseInt(acceleration.x) > movementThreshold ||
-    //       parseInt(acceleration.y) > movementThreshold ||
-    //       parseInt(acceleration.z) > movementThreshold)
-    //   ) {
-    //     clearTimeout(timeoutId);
-    //     setIsMoving(true);
-
-    //     timeoutId = setTimeout(() => {
-    //       setIsMoving(false);
-    //     }, 3860);
-    //   }
-    // };
-
-    // const throttledMotion = throttle(handleDeviceMotion, 3860);
-
     const updateMovements = (e) => {
       setMovement({x:e?.acceleration?.x, y:e?.acceleration?.y, z:e?.acceleration?.z})
     }
-
-
     if (window.DeviceMotionEvent) {
       window.addEventListener("devicemotion", updateMovements);
     } else {
