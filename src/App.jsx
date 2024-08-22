@@ -38,7 +38,11 @@ function App() {
     console.log("trying to play gif: ",movement)
     document.getElementsByTagName(
       "p"
-    )[0].innerHTML = `${movement?.x}`;
+    )[0].innerHTML = `
+    ${movement?.x},
+    ${movement?.y},
+    ${movement?.x},
+    `;
     throttle(handleGifPlay,3860)(movement)
   }, [movement])
   useEffect(() => {
