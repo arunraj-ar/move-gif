@@ -5,36 +5,43 @@ import { throttle } from "./assets/helpers";
 import { GIF_LENGTH } from "./assets/constants";
 
 function App() {
-  const [isMoving, setIsMoving] = useState(false);
+  const [isMoving, setIsMoving] = useState(true);
   const [movement, setMovement] = useState({});
 
   const handleGifPlay = (a) => {
     const movementThreshold = 2;
     let intervalId;
-    if (!isMoving&& (parseInt(a?.x) > movementThreshold ||
-    parseInt(a?.y) > movementThreshold ||
-    parseInt(a?.z) > movementThreshold)) {
+    if (
+      !isMoving &&
+      (parseInt(a?.x) > movementThreshold ||
+        parseInt(a?.y) > movementThreshold ||
+        parseInt(a?.z) > movementThreshold)
+    ) {
       clearTimeout(intervalId);
       setIsMoving(true);
       intervalId = setTimeout(() => {
         setIsMoving(false);
       }, GIF_LENGTH);
     }
-  }
+  };
 
   useEffect(() => {
-    throttle(handleGifPlay,GIF_LENGTH)(movement)
-  }, [movement])
+    throttle(handleGifPlay, GIF_LENGTH)(movement);
+  }, [movement]);
   useEffect(() => {
     const updateMovements = (e) => {
-      setMovement({x:e?.acceleration?.x, y:e?.acceleration?.y, z:e?.acceleration?.z})
-    }
+      setMovement({
+        x: e?.acceleration?.x,
+        y: e?.acceleration?.y,
+        z: e?.acceleration?.z,
+      });
+    };
     if (window.DeviceMotionEvent) {
       window.addEventListener("devicemotion", updateMovements);
     } else {
       console.log("DeviceMotion API is not supported in this browser.");
     }
-
+    setIsMoving(false)
     return () => {
       window.removeEventListener("devicemotion", updateMovements);
     };
