@@ -9,11 +9,12 @@ export const Card = ({ data = {}, isMoving = true, setIsMoving }) => {
     const ctx = canvas.getContext("2d");
     const img = new Image();
     img.src = url;
+    const imgTag = imgRef.current;
 
     img.onload = () => {
-      canvas.width = img.width;
-      canvas.height = img.height;
-      ctx.drawImage(img, 0, 0, img.width, img.height);
+      canvas.width = imgTag.clientWidth;
+      canvas.height = imgTag.clientHeight;
+      ctx.drawImage(img, 0, 0, imgTag.clientWidth, imgTag.clientHeight);
       setIsMoving(false);
     };
   }, []);
