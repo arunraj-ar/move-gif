@@ -83,7 +83,7 @@ function App() {
     const updateMovements = (e) => {
       document.getElementsByTagName(
         "p"
-      )[0].innerHTML = `${JSON.stringify(e?.acceleration)}`;
+      )[0].innerHTML = `${e?.acceleration?.x}`;
       setMovement({...e?.acceleration})
     }
 
