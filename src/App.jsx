@@ -22,7 +22,7 @@ function App() {
 
   const handleGifPlay = (a) => {
     console.log("trying to play gif: ",a)
-    const movementThreshold = 10;
+    const movementThreshold = 2;
     if(parseInt(a?.x) > movementThreshold ||
     parseInt(a?.y) > movementThreshold ||
     parseInt(a?.z) > movementThreshold) {
@@ -36,9 +36,9 @@ function App() {
 
   useEffect(() => {
     console.log("trying to play gif: ",movement)
-    // document.getElementsByTagName(
-    //   "p"
-    // )[0].innerHTML = `${JSON.stringify(movement)}`;
+    document.getElementsByTagName(
+      "p"
+    )[0].innerHTML = `${movement?.x}`;
     throttle(handleGifPlay,3860)(movement)
   }, [movement])
   useEffect(() => {
@@ -81,9 +81,6 @@ function App() {
     // const throttledMotion = throttle(handleDeviceMotion, 3860);
 
     const updateMovements = (e) => {
-      document.getElementsByTagName(
-        "p"
-      )[0].innerHTML = `${e?.acceleration?.x}`;
       setMovement({...e?.acceleration})
     }
 
