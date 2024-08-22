@@ -41,7 +41,7 @@ function App() {
     } else {
       console.log("DeviceMotion API is not supported in this browser.");
     }
-    setIsMoving(false)
+
     return () => {
       window.removeEventListener("devicemotion", updateMovements);
     };
@@ -55,6 +55,7 @@ function App() {
           alt: "Jake The Dog Dancing",
         }}
         isMoving={isMoving}
+        setIsMoving={setIsMoving}
       />
     </>
   );

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
-export const Card = ({ data = {}, isMoving = true }) => {
+export const Card = ({ data = {}, isMoving = true, setIsMoving }) => {
   const canvasRef = useRef(null);
   const imgRef = useRef(null);
   const { url, alt } = data;
@@ -15,6 +15,7 @@ export const Card = ({ data = {}, isMoving = true }) => {
       canvas.height = img.height;
       ctx.drawImage(img, 0, 0, img.width, img.height);
     };
+    setIsMoving(false);
   }, []);
 
   useEffect(() => {
@@ -23,7 +24,7 @@ export const Card = ({ data = {}, isMoving = true }) => {
     console.log("img.clientwidth: ",img.clientWidth, img.clientHeight)
     canvas.width = img.clientWidth;
     canvas.height = img.clientHeight;
-  })
+  },[isMoving])
   return (
     <div className={`border p-10`}>
       <img ref={imgRef} src={url} alt={alt} className={`${isMoving? 'visible': 'hidden'}`} />
