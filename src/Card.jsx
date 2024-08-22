@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import "./App.css";
-export const Card = ({ data = {}, isMoving = true, setIsMoving }) => {
+export const Card = ({ data = {}, isMoving = true, setIsMoving, onClick }) => {
   const canvasRef = useRef(null);
   const imgRef = useRef(null);
   const { url, alt } = data;
@@ -20,7 +20,7 @@ export const Card = ({ data = {}, isMoving = true, setIsMoving }) => {
   }, []);
 
   return (
-    <div className={`border p-4`}>
+    <div onClick={onClick} className={`border p-4`}>
       <img
         ref={imgRef}
         src={url}

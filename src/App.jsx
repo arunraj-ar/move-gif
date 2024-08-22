@@ -7,6 +7,7 @@ import { GIF_LENGTH } from "./assets/constants";
 function App() {
   const [isMoving, setIsMoving] = useState(true);
   const [movement, setMovement] = useState({});
+  const [isListing, setIsListing] = useState(true);
 
   const handleGifPlay = (a) => {
     const movementThreshold = 2;
@@ -51,15 +52,36 @@ function App() {
     <>
       <div className="w-dvw min-h-dvh align-middle flex flex-col justify-center items-center bg-black">
         <div className="p-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-          {Array.from({length:50},() => (<Card
-            data={{
-              url: "https://europe1.discourse-cdn.com/figma/original/3X/7/1/7105e9c010b3d1f0ea893ed5ca3bd58e6cec090e.gif",
-              alt: "Jake The Dog Dancing",
-            }}
-            isMoving={isMoving}
-            setIsMoving={setIsMoving}
-            className="p-4"
-          />))}
+          {isListing ? (
+            Array.from({ length: 50 }, (_, idx) => (
+              <Card
+                key={idx}
+                data={{
+                  url: "https://europe1.discourse-cdn.com/figma/original/3X/7/1/7105e9c010b3d1f0ea893ed5ca3bd58e6cec090e.gif",
+                  alt: "Jake The Dog Dancing",
+                }}
+                isMoving={isMoving}
+                setIsMoving={setIsMoving}
+                className="p-4"
+                onClick={() => {
+                  setIsListing(false);
+                }}
+              />
+            ))
+          ) : (
+            <Card
+              data={{
+                url: "https://europe1.discourse-cdn.com/figma/original/3X/7/1/7105e9c010b3d1f0ea893ed5ca3bd58e6cec090e.gif",
+                alt: "Jake The Dog Dancing",
+              }}
+              isMoving={isMoving}
+              setIsMoving={setIsMoving}
+              className="p-4"
+              onClick={() => {
+                setIsListing(true);
+              }}
+            />
+          )}
         </div>
       </div>
     </>
