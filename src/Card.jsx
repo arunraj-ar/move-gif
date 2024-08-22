@@ -18,7 +18,7 @@ export const Card = ({ data = {}, isMoving = false }) => {
     };
   }, []);
   return (
-    <div className={`border w-[${imgDimensions.w}px] p-10`}>
+    <div className={`border p-10`}>
       <img src={url} alt={alt} className={`${isMoving? 'visible': 'hidden'}`} />
       <canvas
         ref={canvasRef}

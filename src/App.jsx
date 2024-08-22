@@ -9,11 +9,12 @@ function App() {
 
   useEffect(() => {
     isMovingRef.current = isMoving;
+    console.log("updating...")
   }, [isMoving]);
   useEffect(() => {
     const handleDeviceMotion = (e) => {
       const acceleration = e.accelerationIncludingGravity;
-      const movementThreshold = 8;
+      const movementThreshold = 5;
 
       let timeoutId;
       if (
