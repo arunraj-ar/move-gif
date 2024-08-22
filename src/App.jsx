@@ -84,13 +84,13 @@ function App() {
 
 
     if (window.DeviceMotionEvent) {
-      window.addEventListener("resize", updateMovements);
+      window.addEventListener("devicemotion", updateMovements);
     } else {
       console.log("DeviceMotion API is not supported in this browser.");
     }
 
     return () => {
-      window.removeEventListener("resize", updateMovements);
+      window.removeEventListener("devicemotion", updateMovements);
     };
   }, []);
 
