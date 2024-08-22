@@ -17,11 +17,27 @@ const throttle = (func, limit) => {
 
 function App() {
   const [isMoving, setIsMoving] = useState(false);
+  const [movement, setMovement] = useState({});
   const isMovingRef = useRef(isMoving);
+
+  const handleGifPlay = (a) => {
+    console.log("trying to play gif: ",a)
+    const movementThreshold = 10;
+    if(parseInt(a?.x) > movementThreshold ||
+    parseInt(a?.y) > movementThreshold ||
+    parseInt(a?.z) > movementThreshold) {
+      setIsMoving(true);
+    }
+  }
 
   useEffect(() => {
     isMovingRef.current = isMoving;
   }, [isMoving]);
+
+  useEffect(() => {
+    console.log("trying to play gif: ",movement)
+    throttle(handleGifPlay,3860)(movement)
+  }, [movement])
   useEffect(() => {
     const handleDeviceMotion = (e) => {
       const acceleration = e.acceleration;
@@ -61,15 +77,20 @@ function App() {
 
     const throttledMotion = throttle(handleDeviceMotion, 3860);
 
+    const updateMovements = (e) => {
+      console.log("updating movements: ",e.acceleration)
+      setMovement({...e?.acceleration})
+    }
+
 
     if (window.DeviceMotionEvent) {
-      window.addEventListener("devicemotion", throttledMotion);
+      window.addEventListener("resize", updateMovements);
     } else {
       console.log("DeviceMotion API is not supported in this browser.");
     }
 
     return () => {
-      window.removeEventListener("devicemotion", throttledMotion);
+      window.removeEventListener("resize", updateMovements);
     };
   }, []);
 
