@@ -1,0 +1,1 @@
+export const GIF_LENGTH = 3860; //ms

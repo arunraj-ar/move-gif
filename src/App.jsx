@@ -1,19 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Card } from "./Card";
-
-const throttle = (func, limit) => {
-  let flag = true;
-  return (e) => {
-    if (flag) {
-      func(e);
-      flag = false;
-      setTimeout(() => {
-        flag = true;
-      }, limit);
-    }
-  };
-};
+import { throttle } from "./assets/helpers";
+import { GIF_LENGTH } from "./assets/constants";
 
 function App() {
   const [isMoving, setIsMoving] = useState(false);
@@ -29,12 +18,12 @@ function App() {
       setIsMoving(true);
       intervalId = setTimeout(() => {
         setIsMoving(false);
-      }, 3860);
+      }, GIF_LENGTH);
     }
   }
 
   useEffect(() => {
-    throttle(handleGifPlay,3860)(movement)
+    throttle(handleGifPlay,GIF_LENGTH)(movement)
   }, [movement])
   useEffect(() => {
     const updateMovements = (e) => {
@@ -53,8 +42,6 @@ function App() {
 
   return (
     <>
-    <p></p>
-      <h1>hello</h1>
       <Card
         data={{
           url: "https://europe1.discourse-cdn.com/figma/original/3X/7/1/7105e9c010b3d1f0ea893ed5ca3bd58e6cec090e.gif",
