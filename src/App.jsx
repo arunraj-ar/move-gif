@@ -81,7 +81,7 @@ function App() {
     // const throttledMotion = throttle(handleDeviceMotion, 3860);
 
     const updateMovements = (e) => {
-      setMovement({...e?.acceleration})
+      setMovement({x:e?.acceleration?.x, y:e?.acceleration?.y, z:e?.acceleration?.z})
     }
 
 
