@@ -49,9 +49,9 @@ function App() {
 
   return (
     <>
-      <div className="w-dvw h-dvh align-middle flex flex-col justify-center items-center bg-black">
+      <div className="w-dvw min-h-dvh align-middle flex flex-col justify-center items-center bg-black">
         <div className="p-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-          <Card
+          {Array.from({length:50},() => (<Card
             data={{
               url: "https://europe1.discourse-cdn.com/figma/original/3X/7/1/7105e9c010b3d1f0ea893ed5ca3bd58e6cec090e.gif",
               alt: "Jake The Dog Dancing",
@@ -59,70 +59,7 @@ function App() {
             isMoving={isMoving}
             setIsMoving={setIsMoving}
             className="p-4"
-          />
-          <Card
-            data={{
-              url: "https://europe1.discourse-cdn.com/figma/original/3X/7/1/7105e9c010b3d1f0ea893ed5ca3bd58e6cec090e.gif",
-              alt: "Jake The Dog Dancing",
-            }}
-            isMoving={isMoving}
-            setIsMoving={setIsMoving}
-            className="p-4"
-          />
-          <Card
-            data={{
-              url: "https://europe1.discourse-cdn.com/figma/original/3X/7/1/7105e9c010b3d1f0ea893ed5ca3bd58e6cec090e.gif",
-              alt: "Jake The Dog Dancing",
-            }}
-            isMoving={isMoving}
-            setIsMoving={setIsMoving}
-            className="p-4"
-          />
-          <Card
-            data={{
-              url: "https://europe1.discourse-cdn.com/figma/original/3X/7/1/7105e9c010b3d1f0ea893ed5ca3bd58e6cec090e.gif",
-              alt: "Jake The Dog Dancing",
-            }}
-            isMoving={isMoving}
-            setIsMoving={setIsMoving}
-            className="p-4"
-          />
-          <Card
-            data={{
-              url: "https://europe1.discourse-cdn.com/figma/original/3X/7/1/7105e9c010b3d1f0ea893ed5ca3bd58e6cec090e.gif",
-              alt: "Jake The Dog Dancing",
-            }}
-            isMoving={isMoving}
-            setIsMoving={setIsMoving}
-            className="p-4"
-          />
-          <Card
-            data={{
-              url: "https://europe1.discourse-cdn.com/figma/original/3X/7/1/7105e9c010b3d1f0ea893ed5ca3bd58e6cec090e.gif",
-              alt: "Jake The Dog Dancing",
-            }}
-            isMoving={isMoving}
-            setIsMoving={setIsMoving}
-            className="p-4"
-          />
-          <Card
-            data={{
-              url: "https://europe1.discourse-cdn.com/figma/original/3X/7/1/7105e9c010b3d1f0ea893ed5ca3bd58e6cec090e.gif",
-              alt: "Jake The Dog Dancing",
-            }}
-            isMoving={isMoving}
-            setIsMoving={setIsMoving}
-            className="p-4"
-          />
-          <Card
-            data={{
-              url: "https://europe1.discourse-cdn.com/figma/original/3X/7/1/7105e9c010b3d1f0ea893ed5ca3bd58e6cec090e.gif",
-              alt: "Jake The Dog Dancing",
-            }}
-            isMoving={isMoving}
-            setIsMoving={setIsMoving}
-            className="p-4"
-          />
+          />))}
         </div>
       </div>
     </>
