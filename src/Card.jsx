@@ -19,21 +19,30 @@ export const Card = ({ data = {}, isMoving = true, setIsMoving }) => {
   }, []);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const img = imgRef.current;
-    console.log("img.clientwidth: ",img.clientWidth, img.clientHeight)
-    document.getElementsByTagName('p')[0].innerHTML = `${img.clientWidth} ${img.clientHeight}`
+    if (isMoving) {
+      const canvas = canvasRef.current;
+      const img = imgRef.current;
+      console.log("img.clientwidth: ", img.clientWidth, img.clientHeight);
+      document.getElementsByTagName(
+        "p"
+      )[0].innerHTML = `${img.clientWidth} ${img.clientHeight}`;
 
-    canvas.width = img.clientWidth;
-    canvas.height = img.clientHeight;
-  },[isMoving])
+      canvas.width = img.clientWidth;
+      canvas.height = img.clientHeight;
+    }
+  }, [isMoving]);
   return (
     <div className={`border p-10`}>
       <p></p>
-      <img ref={imgRef} src={url} alt={alt} className={`${isMoving? 'visible': 'hidden'}`} />
+      <img
+        ref={imgRef}
+        src={url}
+        alt={alt}
+        className={`${isMoving ? "visible" : "hidden"}`}
+      />
       <canvas
         ref={canvasRef}
-        className={`${isMoving? 'hidden': 'visible'}`}
+        className={`${isMoving ? "hidden" : "visible"}`}
       />
     </div>
   );
